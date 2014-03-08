@@ -18,7 +18,7 @@
       "ssh_username":            "{{user `username`}}",
       "ssh_password":            "{{user `password`}}",
       "ssh_wait_timeout":        "10s",
-      "shutdown_command":        "shutdown -h now",
+      "shutdown_command":        "shutdown -hP now",
       "disk_size":               60000,
       "guest_additions_mode":    "disable",
       "headless":                false,
