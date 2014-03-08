@@ -24,7 +24,7 @@ Perform an initial `emerge-webrsync` to generate the portage tree.
 
     emerge-webrsync
 
-**Do not** run `emerge --search` before you do this, because you will add
+**Do not** run `emerge --sync` before you do this, because you will add
 unnecessary strain on the portage mirror and may even get yourself banned by
 the mirror.
 
