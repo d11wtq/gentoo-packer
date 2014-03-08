@@ -58,6 +58,7 @@
         "scripts/kernel.sh",
         "scripts/grub.sh",
         "scripts/virtualbox.sh",
+        "scripts/network.sh",
         "scripts/vagrant.sh",
         "scripts/cleanup.sh"
       ]
