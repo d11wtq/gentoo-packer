@@ -47,7 +47,7 @@
   "provisioners": [
     {
       "type":             "shell",
-      "environment_vars": {"STAGE3": "{{user `stage3`}}"},
+      "environment_vars": ["STAGE3={{user `stage3`}}"],
       "scripts":          [
         "scripts/partition.sh",
         "scripts/stage3.sh",
