@@ -1,8 +1,8 @@
 #!/bin/bash
 
 chroot /mnt/gentoo /bin/bash <<'EOF'
-emerge app-emulation/virtualbox-guest-additions --autounmask-write
+emerge ">=app-emulation/virtualbox-guest-additions-4.3" --autounmask-write
 etc-update --automode -5
-emerge app-emulation/virtualbox-guest-additions
+emerge ">=app-emulation/virtualbox-guest-additions-4.3"
 rc-update add virtualbox-guest-additions default
 EOF
