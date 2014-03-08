@@ -30,6 +30,8 @@ echo "All done, shutting down in"
 for s in 5 4 3 2 1
 do
   echo -n " $s"
+  sleep 1
 done
+echo
 
 shutdown -hP now
