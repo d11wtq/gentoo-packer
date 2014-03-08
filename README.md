@@ -7,6 +7,12 @@ It is based on the official
 [Quick Install](https://www.gentoo.org/doc/en/gentoo-x86-quickinstall.xml)
 guide, but avoids completing any of the optional steps.
 
+## Box URL
+
+> https://dl.dropboxusercontent.com/s/lyombjyb8f96ksh/gentoo-amd64-stage3.box
+
+(Updated as new stage3 tarballs are published)
+
 ## Usage
 
 This is a [Packer](https://packer.io/) template. Install the latest version of
