@@ -39,6 +39,10 @@ In reality, the following things are also installed for Vagrant to work:
   - net-fs/nfs-utils
   - app-admin/sudo
 
+## What's configured?
+
+Everything is left as the defaults. The time zone is set to UTC.
+
 ### No vixie-cron? No syslog? No chef? Huh?
 
 When I say _"most minimal stage3 installation"_, I mean minimal. If you want
