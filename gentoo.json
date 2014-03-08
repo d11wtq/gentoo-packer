@@ -1,0 +1,68 @@
+{
+  "description": "Faithful Stage 3 Gentoo Installation",
+
+  "variables": {
+    "stage3":   "20140227",
+    "username": "root",
+    "password": "vagrant"
+  },
+
+  "builders": [
+    {
+      "vm_name":                 "Gentoo",
+      "type":                    "virtualbox-iso",
+      "guest_os_type":           "Gentoo_64",
+      "iso_url":                 "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
+      "iso_checksum":            "805c55ac216c6119ddcd5edcdbbc69f1632ef2f1478bf8abe71eaf3efe5295722471c4fe65797f54a4fb257f1efb483a9cca81488fbe5ae79966b41964c61b1a",
+      "iso_checksum_type":       "sha512",
+      "ssh_username":            "{{user `username`}}",
+      "ssh_password":            "{{user `password`}}",
+      "ssh_wait_timeout":        "10s",
+      "shutdown_command":        "shutdown -h now",
+      "disk_size":               60000,
+      "guest_additions_mode":    "disable",
+      "headless":                false,
+      "boot_wait":               "5s",
+
+      "boot_command": [
+        "gentoo-nofb",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "<wait10>",
+        "<wait10>",
+        "passwd {{user `username`}}",
+        "<enter>",
+        "{{user `password`}}",
+        "<enter>",
+        "{{user `password`}}",
+        "<enter>",
+        "/etc/init.d/sshd start",
+        "<enter>",
+        "<wait>"
+      ]
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type":             "shell",
+      "environment_vars": {"STAGE3": "{{user `stage3`}}"},
+      "scripts":          [
+        "scripts/partition.sh",
+        "scripts/stage3.sh",
+        "scripts/mounts.sh",
+        "scripts/portage.sh",
+        "scripts/timezone.sh",
+        "scripts/fstab.sh",
+        "scripts/kernel.sh",
+        "scripts/grub.sh",
+        "scripts/virtualbox.sh",
+        "scripts/vagrant.sh",
+        "scripts/cleanup.sh"
+      ]
+    }
+  ],
+
+  "post-processors": ["vagrant"]
+}
