@@ -28,6 +28,11 @@ Perform an initial `emerge-webrsync` to generate the portage tree.
 unnecessary strain on the portage mirror and may even get yourself banned by
 the mirror.
 
+## Disk size
+
+The disk is a 60GB sparse disk. You do not need 60GB of free space initially.
+The disk will grow as disk usage increases.
+
 ## What's installed?
 
 Short answer, nothing that's not in the stage3 + genkernel + grub2 +
@@ -42,10 +47,3 @@ In reality, the following things are also installed for Vagrant to work:
 ## What's configured?
 
 Everything is left as the defaults. The time zone is set to UTC.
-
-### No vixie-cron? No syslog? No chef? Huh?
-
-When I say _"most minimal stage3 installation"_, I mean minimal. If you want
-these things, you are free to install them yourself using Vagrant's built-in
-provisioning system. That's exactly why this project was created. I was unable
-to find a truly faithful stage3 install for Vagrant.
