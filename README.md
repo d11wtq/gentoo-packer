@@ -35,8 +35,7 @@ The disk will grow as disk usage increases.
 
 ## What's installed?
 
-Short answer, nothing that's not in the stage3 + genkernel + grub2 +
-gentoo-sources.
+Short answer, nothing that's not in the stage3 + grub + gentoo-sources.
 
 In reality, the following things are also installed for Vagrant to work:
 
