@@ -11,7 +11,7 @@ guide, but avoids completing any of the optional steps.
 
 > https://dl.dropboxusercontent.com/s/lyombjyb8f96ksh/gentoo-amd64-stage3.box
 
-(**262MB**, Updated as new stage3 tarballs are published)
+(**243MB**, Updated as new stage3 tarballs are published)
 
 ## Usage
 
