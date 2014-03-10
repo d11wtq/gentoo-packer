@@ -20,18 +20,7 @@ for script in \
   vagrant     \
   cleanup
 do
-  path="./scripts/$script.sh"
-  echo "Start $path"
-  "$path"
-  echo "Finished $path"
+  "./scripts/$script.sh"
 done
 
-echo "All done, shutting down in"
-for s in 5 4 3 2 1
-do
-  echo -n " $s"
-  sleep 1
-done
-echo
-
-shutdown -hP now
+echo "All done."
