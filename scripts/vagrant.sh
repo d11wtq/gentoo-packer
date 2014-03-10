@@ -1,7 +1,7 @@
 #!/bin/bash
 
 chroot /mnt/gentoo /bin/bash <<'EOF'
-emerge app-admin/sudo
+USE="-sendmail" emerge app-admin/sudo
 emerge net-fs/nfs-utils
 useradd -m -s /bin/bash vagrant
 echo vagrant:vagrant | chpasswd
