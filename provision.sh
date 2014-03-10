@@ -10,6 +10,7 @@ for script in \
   partition   \
   stage3      \
   mounts      \
+  resolv.conf \
   portage     \
   timezone    \
   fstab       \

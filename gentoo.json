@@ -46,22 +46,14 @@
 
   "provisioners": [
     {
+      "type":        "file",
+      "source":      "./scripts",
+      "destination": "/"
+    },
+    {
       "type":             "shell",
       "environment_vars": ["STAGE3={{user `stage3`}}"],
-      "scripts":          [
-        "scripts/partition.sh",
-        "scripts/stage3.sh",
-        "scripts/mounts.sh",
-        "scripts/portage.sh",
-        "scripts/timezone.sh",
-        "scripts/fstab.sh",
-        "scripts/kernel.sh",
-        "scripts/grub.sh",
-        "scripts/virtualbox.sh",
-        "scripts/network.sh",
-        "scripts/vagrant.sh",
-        "scripts/cleanup.sh"
-      ]
+      "scripts":          ["provision.sh"]
     }
   ],
 
