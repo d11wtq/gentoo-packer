@@ -22,7 +22,7 @@ for script in \
 do
   path="./scripts/$script.sh"
   echo "Start $path"
-  ("$path")
+  "$path"
   echo "Finished $path"
 done
 
