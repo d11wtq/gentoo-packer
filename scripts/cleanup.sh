@@ -3,20 +3,21 @@
 chroot /mnt/gentoo /bin/bash <<'EOF'
 cd /usr/src/linux && make clean
 emerge -C sys-kernel/gentoo-sources
-emerge sys-fs/zerofree --autounmask-write
-etc-update --automode -5
-emerge sys-fs/zerofree
-rm -rf /usr/portage
-rm -rf /tmp/*
-rm -rf /var/log/*
-rm -rf /var/tmp/*
 EOF
 
-mount -o remount,ro /mnt/gentoo
+rm -rf /mnt/gentoo/usr/portage
+rm -rf /mnt/gentoo/tmp/*
+rm -rf /mnt/gentoo/var/log/*
+rm -rf /mnt/gentoo/var/tmp/*
 
-chroot /mnt/gentoo /bin/bash <<'EOF'
-zerofree /dev/sda4
+wget http://intgat.tigress.co.uk/rmy/uml/zerofree-1.0.3.tgz
+tar xvzf zerofree-*.tgz
+cd zerofree*/
+make
+
+mount -o remount,ro /mnt/gentoo
+./zerofree /dev/sda4
+
 swapoff /dev/sda3
 dd if=/dev/zero of=/dev/sda3
 mkswap /dev/sda3
-EOF
