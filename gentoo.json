@@ -4,7 +4,7 @@
   "variables": {
     "stage3":   "20140227",
     "username": "root",
-    "password": "vagrant"
+    "password": "packer"
   },
 
   "builders": [
