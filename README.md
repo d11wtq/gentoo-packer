@@ -72,9 +72,8 @@ The disk will grow as disk usage increases.
 
 ## What's installed?
 
-Short answer, nothing that's not in the stage3 + grub + gentoo-sources.
-
-In reality, the following things are also installed for Vagrant to work:
+Short answer, nothing that's not in the stage3, with the exception of the
+following things that are needed for Vagrant to work:
 
   - app-emulation/virtualbox-guest-additions
   - net-fs/nfs-utils
