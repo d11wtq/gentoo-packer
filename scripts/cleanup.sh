@@ -3,6 +3,7 @@
 chroot /mnt/gentoo /bin/bash <<'EOF'
 cd /usr/src/linux && make clean
 emerge -C sys-kernel/gentoo-sources
+emerge --depclean
 EOF
 
 rm -rf /mnt/gentoo/usr/portage
