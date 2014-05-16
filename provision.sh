@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+chmod +x scripts/*.sh
+
 for script in \
   partition   \
   stage3      \

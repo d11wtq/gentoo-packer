@@ -48,7 +48,7 @@
     {
       "type":        "file",
       "source":      "scripts",
-      "destination": "/"
+      "destination": "/root"
     },
     {
       "type":             "shell",
