@@ -2,7 +2,7 @@
   "description": "Faithful Stage 3 Gentoo Installation",
 
   "variables": {
-    "stage3":   "20140227",
+    "stage3":   "20140515",
     "username": "root",
     "password": "packer"
   },
@@ -13,7 +13,7 @@
       "type":                 "virtualbox-iso",
       "guest_os_type":        "Gentoo_64",
       "iso_url":              "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
-      "iso_checksum":         "805c55ac216c6119ddcd5edcdbbc69f1632ef2f1478bf8abe71eaf3efe5295722471c4fe65797f54a4fb257f1efb483a9cca81488fbe5ae79966b41964c61b1a",
+      "iso_checksum":         "6788fdca60b2974c27779057470eb672b9821a364e57282478a35c803d460ab552da27c1342a11a4690201aa1c685d4300d7bcae017a53b2d78938b91016c692",
       "iso_checksum_type":    "sha512",
       "ssh_username":         "{{user `username`}}",
       "ssh_password":         "{{user `password`}}",
