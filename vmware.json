@@ -1,0 +1,72 @@
+{
+  "description": "Faithful Stage 3 Gentoo Installation (VMWare)",
+
+  "variables": {
+    "stage3":   "20140717",
+    "username": "root",
+    "password": "packer"
+  },
+
+  "builders": [
+    {
+      "vm_name":              "Gentoo",
+      "type":                 "vmware-iso",
+      "guest_os_type":        "linux",
+      "iso_url":              "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
+      "iso_checksum":         "44c725642cc7c97a59567995e140150916607fc0dfb686fb68c18b8a53205d77ce0c28cc86a129de4e85cf4016a67741e40e324428f859550a9c2aa5575948d6",
+      "iso_checksum_type":    "sha512",
+      "ssh_username":         "{{user `username`}}",
+      "ssh_password":         "{{user `password`}}",
+      "ssh_wait_timeout":     "20s",
+      "shutdown_command":     "shutdown -hP now",
+      "disk_size":            60000,
+      "headless":             false,
+      "boot_wait":            "5s",
+      "vmx_data":             {"memsize": "1024"},
+
+      "boot_command": [
+        "gentoo-nofb",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "passwd {{user `username`}}",
+        "<enter>",
+        "<wait>",
+        "{{user `password`}}",
+        "<enter>",
+        "<wait>",
+        "{{user `password`}}",
+        "<enter>",
+        "<wait>",
+        "/etc/init.d/sshd start",
+        "<enter>",
+        "<wait>"
+      ]
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type":        "file",
+      "source":      "scripts",
+      "destination": "/tmp"
+    },
+    {
+      "type":             "shell",
+      "environment_vars": ["STAGE3={{user `stage3`}}", "SCRIPTS=/tmp"],
+      "scripts":          ["provision.sh"]
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type":   "vagrant",
+      "output": "gentoo-amd64-stage3-vmware.box"
+    }
+  ]
+}
