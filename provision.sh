@@ -6,6 +6,13 @@ then
   exit 1
 fi
 
+if [[ -z $SCRIPTS ]]
+then
+  SCRIPTS=.
+fi
+
+chmod +x $SCRIPTS/scripts/*.sh
+
 for script in \
   partition   \
   stage3      \
@@ -21,7 +28,7 @@ for script in \
   vagrant     \
   cleanup
 do
-  "./scripts/$script.sh"
+  "$SCRIPTS/scripts/$script.sh"
 done
 
 echo "All done."
