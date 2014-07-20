@@ -10,6 +10,11 @@ guide, but avoids completing any of the optional steps.
 
 ## Box URL
 
+> **Vagrant Cloud:**
+> d11wtq/gentoo
+
+or
+
 > **VirtualBox:**
 > https://dl.dropboxusercontent.com/s/khura7ni0b6thx8/gentoo-amd64-stage3-virtualbox.box
 
