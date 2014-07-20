@@ -11,12 +11,12 @@ guide, but avoids completing any of the optional steps.
 ## Box URL
 
 > **VirtualBox:**
-> https://dl.dropboxusercontent.com/s/lyombjyb8f96ksh/gentoo-amd64-stage3-virtualbox.box
+> https://dl.dropboxusercontent.com/s/khura7ni0b6thx8/gentoo-amd64-stage3-virtualbox.box
 
 or
 
 > **VMWare:**
-> https://dl.dropboxusercontent.com/s/lyombjyb8f96ksh/gentoo-amd64-stage3-vmware.box
+> https://dl.dropboxusercontent.com/s/w6ncyj98a31o5jd/gentoo-amd64-stage3-vmware.box
 
 (**230MB**, Updated as new stage3 tarballs are published)
 
