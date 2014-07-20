@@ -58,7 +58,11 @@
     },
     {
       "type":             "shell",
-      "environment_vars": ["STAGE3={{user `stage3`}}", "SCRIPTS=/tmp"],
+      "environment_vars": [
+        "STAGE3={{user `stage3`}}",
+        "VM_TYPE=vmware",
+        "SCRIPTS=/tmp"
+      ],
       "scripts":          ["provision.sh"]
     }
   ],

@@ -23,7 +23,7 @@ for script in \
   fstab       \
   kernel      \
   grub        \
-  virtualbox  \
+  $VM_TYPE    \
   network     \
   vagrant     \
   cleanup
