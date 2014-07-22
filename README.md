@@ -8,6 +8,9 @@ It is based on the official
 [Quick Install](https://www.gentoo.org/doc/en/gentoo-x86-quickinstall.xml)
 guide, but avoids completing any of the optional steps.
 
+> **Note:** Currently the VMWare Fusion version has no vmware-tools installed,
+> but NFS mounts should work fine.
+
 ## Box URL
 
 > **Vagrant Cloud:**
