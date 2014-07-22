@@ -1,3 +1,3 @@
 #!/bin/bash
 
-# TODO: Possibly emerge app-emulation/vmware-tools
+# TODO: Install open-vm-tools
