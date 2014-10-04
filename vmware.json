@@ -1,29 +1,6 @@
 {
-  "description": "Faithful Stage 3 Gentoo Installation (VMWare)",
-
-  "variables": {
-    "stage3":   "20140717",
-    "username": "root",
-    "password": "packer"
-  },
-
   "builders": [
     {
-      "vm_name":              "Gentoo",
-      "type":                 "vmware-iso",
-      "guest_os_type":        "linux",
-      "iso_url":              "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
-      "iso_checksum":         "44c725642cc7c97a59567995e140150916607fc0dfb686fb68c18b8a53205d77ce0c28cc86a129de4e85cf4016a67741e40e324428f859550a9c2aa5575948d6",
-      "iso_checksum_type":    "sha512",
-      "ssh_username":         "{{user `username`}}",
-      "ssh_password":         "{{user `password`}}",
-      "ssh_wait_timeout":     "20s",
-      "shutdown_command":     "shutdown -hP now",
-      "disk_size":            60000,
-      "headless":             false,
-      "boot_wait":            "5s",
-      "vmx_data":             {"memsize": "1024"},
-
       "boot_command": [
         "gentoo-nofb",
         "<enter>",
@@ -46,31 +23,54 @@
         "/etc/init.d/sshd start",
         "<enter>",
         "<wait>"
-      ]
+      ],
+      "boot_wait": "5s",
+      "disk_size": 60000,
+      "guest_os_type": "linux",
+      "headless": false,
+      "iso_checksum": "44c725642cc7c97a59567995e140150916607fc0dfb686fb68c18b8a53205d77ce0c28cc86a129de4e85cf4016a67741e40e324428f859550a9c2aa5575948d6",
+      "iso_checksum_type": "sha512",
+      "iso_url": "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
+      "shutdown_command": "shutdown -hP now",
+      "ssh_password": "{{user `password`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_wait_timeout": "20s",
+      "type": "vmware-iso",
+      "vm_name": "Gentoo",
+      "vmx_data": {
+        "memsize": "1024"
+      }
     }
   ],
-
+  "description": "Faithful Stage 3 Gentoo Installation (VMWare)",
+  "post-processors": [
+    {
+      "output": "gentoo-amd64-stage3-vmware.box",
+      "type": "vagrant"
+    }
+  ],
   "provisioners": [
     {
-      "type":        "file",
-      "source":      "scripts",
-      "destination": "/tmp"
+      "destination": "/tmp",
+      "source": "scripts",
+      "type": "file"
     },
     {
-      "type":             "shell",
       "environment_vars": [
         "STAGE3={{user `stage3`}}",
         "VM_TYPE=vmware",
         "SCRIPTS=/tmp"
       ],
-      "scripts":          ["provision.sh"]
+      "scripts": [
+        "provision.sh"
+      ],
+      "type": "shell"
     }
   ],
-
-  "post-processors": [
-    {
-      "type":   "vagrant",
-      "output": "gentoo-amd64-stage3-vmware.box"
-    }
-  ]
+  "variables": {
+    "password": "packer",
+    "stage3": "20140717",
+    "username": "root"
+  }
 }
+
