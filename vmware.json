@@ -27,8 +27,8 @@
       "boot_wait": "5s",
       "disk_size": 60000,
       "guest_os_type": "linux",
-      "headless": false,
-      "iso_checksum": "44c725642cc7c97a59567995e140150916607fc0dfb686fb68c18b8a53205d77ce0c28cc86a129de4e85cf4016a67741e40e324428f859550a9c2aa5575948d6",
+      "headless": true,
+      "iso_checksum": "20dc09c811940c8742a9d1c7fa6da7cf8eaecf6c24797c67a00ba3d36e80d66f3d2555c6dbe9be303c0304cbdf51eaaca2deda8f523872912f58119663b4ffc5",
       "iso_checksum_type": "sha512",
       "iso_url": "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
       "shutdown_command": "shutdown -hP now",
@@ -69,7 +69,7 @@
   ],
   "variables": {
     "password": "packer",
-    "stage3": "20140717",
+    "stage3": "20141002",
     "username": "root"
   }
 }
