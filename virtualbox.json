@@ -1,29 +1,6 @@
 {
-  "description": "Faithful Stage 3 Gentoo Installation (VirtualBox)",
-
-  "variables": {
-    "stage3":   "20140717",
-    "username": "root",
-    "password": "packer"
-  },
-
   "builders": [
     {
-      "vm_name":              "Gentoo",
-      "type":                 "virtualbox-iso",
-      "guest_os_type":        "Gentoo_64",
-      "iso_url":              "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
-      "iso_checksum":         "44c725642cc7c97a59567995e140150916607fc0dfb686fb68c18b8a53205d77ce0c28cc86a129de4e85cf4016a67741e40e324428f859550a9c2aa5575948d6",
-      "iso_checksum_type":    "sha512",
-      "ssh_username":         "{{user `username`}}",
-      "ssh_password":         "{{user `password`}}",
-      "ssh_wait_timeout":     "20s",
-      "shutdown_command":     "shutdown -hP now",
-      "disk_size":            60000,
-      "guest_additions_mode": "disable",
-      "headless":             false,
-      "boot_wait":            "5s",
-
       "boot_command": [
         "gentoo-nofb",
         "<enter>",
@@ -46,31 +23,52 @@
         "/etc/init.d/sshd start",
         "<enter>",
         "<wait>"
-      ]
-    }
-  ],
-
-  "provisioners": [
-    {
-      "type":        "file",
-      "source":      "scripts",
-      "destination": "/tmp"
-    },
-    {
-      "type":             "shell",
-      "environment_vars": [
-        "STAGE3={{user `stage3`}}",
-        "VM_TYPE=vmware",
-        "SCRIPTS=/tmp"
       ],
-      "scripts":          ["provision.sh"]
+      "boot_wait": "5s",
+      "disk_size": 60000,
+      "guest_additions_mode": "disable",
+      "guest_os_type": "Gentoo_64",
+      "headless": false,
+      "iso_checksum": "20dc09c811940c8742a9d1c7fa6da7cf8eaecf6c24797c67a00ba3d36e80d66f3d2555c6dbe9be303c0304cbdf51eaaca2deda8f523872912f58119663b4ffc5",
+      "iso_checksum_type": "sha512",
+      "iso_url": "http://distfiles.gentoo.org/releases/amd64/autobuilds/{{user `stage3`}}/install-amd64-minimal-{{user `stage3`}}.iso",
+      "shutdown_command": "shutdown -hP now",
+      "ssh_password": "{{user `password`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_wait_timeout": "20s",
+      "type": "virtualbox-iso",
+      "vm_name": "Gentoo"
     }
   ],
-
+  "description": "Faithful Stage 3 Gentoo Installation (VirtualBox)",
   "post-processors": [
     {
-      "type":   "vagrant",
-      "output": "gentoo-amd64-stage3-virtualbox.box"
+      "output": "gentoo-amd64-stage3-virtualbox.box",
+      "type": "vagrant"
     }
-  ]
+  ],
+  "provisioners": [
+    {
+      "destination": "/tmp",
+      "source": "scripts",
+      "type": "file"
+    },
+    {
+      "environment_vars": [
+        "STAGE3={{user `stage3`}}",
+        "VM_TYPE=virtualbox",
+        "SCRIPTS=/tmp"
+      ],
+      "scripts": [
+        "provision.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "password": "packer",
+    "stage3": "20141002",
+    "username": "root"
+  }
 }
+
