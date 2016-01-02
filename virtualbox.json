@@ -20,6 +20,12 @@
         "{{user `password`}}",
         "<enter>",
         "<wait>",
+        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config",
+        "<enter>",
+        "<wait>",
+        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config",
+        "<enter>",
+        "<wait>",
         "/etc/init.d/sshd start",
         "<enter>",
         "<wait>"
