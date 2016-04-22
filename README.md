@@ -37,6 +37,10 @@ Packer, then:
 
 This will chew for a bit and finally output a Vagrant box file.
 
+Running with pre-provision will attempt to determine a close mirror and use that 
+for fetching an ISO additionally it will automatically fetch the most recent 
+ISO and get the SHA512 digest for the ISO from the mirror.
+
 ### Installation without Packer
 
 If you have Vagrant installed, you can use the scripts provided here to build a
