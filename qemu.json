@@ -1,0 +1,88 @@
+{
+  "variables": {
+    "username": "root",
+	"password": "pinger",
+	"stage3": "{{env `STAGE3`}}",
+	"iso_digest": "{{env `ISO_SHA512`}}",
+	"iso": "{{env `ISO`}}",
+	"selected_mirror": "{{env `SELECTED_MIRROR`}}",
+	"disk": "{{env `DISK`}}",
+	"comment1": "stage3 wget txt with latest"
+  },
+  "builders": [
+    {
+      "boot_command": [
+        "gentoo-nofb",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "<wait10>",
+        "passwd {{user `username`}}",
+        "<enter>",
+        "<wait>",
+        "{{user `password`}}",
+        "<enter>",
+        "<wait>",
+        "{{user `password`}}",
+        "<enter>",
+        "<wait>",
+        "sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config",
+        "<enter>",
+        "<wait>",
+        "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config",
+        "<enter>",
+        "<wait>",
+        "/etc/init.d/sshd start",
+        "<enter>",
+        "<wait>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 60000,
+      "headless": false,
+      "iso_checksum": "{{ user `iso_digest`}}",
+      "iso_checksum_type": "sha512",
+      "iso_url": "{{ user `selected_mirror` }}{{ user `iso` }}",
+      "shutdown_command": "shutdown -hP now",
+      "ssh_password": "{{user `password`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_wait_timeout": "20s",
+	  "accelerator": "kvm",
+	  "disk_interface": "virtio",
+	  "net_device": "virtio-net",
+	  "format": "qcow2",
+	  "qemuargs": [
+        [ "-m", "6000M" ],
+        [ "-M", "q35" ],
+        [ "-vga", "virtio"],
+        [ "-smp", "cpus=1,maxcpus=6,cores=2,threads=2" ]
+      ],
+      "type": "qemu",
+      "vm_name": "Gentoo"
+    }
+  ],
+  "description": "Faithful Stage 3 Gentoo Installation (qemu)",
+  "provisioners": [
+    {
+      "destination": "/tmp",
+      "source": "scripts",
+      "type": "file"
+    },
+    {
+      "environment_vars": [
+        "STAGE3={{user `stage3`}}",
+        "VM_TYPE=qemu",
+		"DISK={{user `disk`}}",
+        "SCRIPTS=/tmp"
+      ],
+      "scripts": [
+        "provision.sh"
+      ],
+      "type": "shell"
+    }
+  ]
+}
+
